@@ -1,8 +1,8 @@
-# FufuFilms
+# fufufilms
 
-Python script that utilizes the tmdbsimple, omdb, and SendGrid APIs to return a list of highly-rated films (in-theaters, popular, etc).
+Python script that utilizes the tmdbsimple, omdb, and SendGrid (optional) APIs to return a list of highly-rated films (top rated, in-theaters, popular, etc).
 
-"Highly-rated" is interpreted as an IMDB rating >= 7 (out of 10) and a RottenTomatoes rating >= 85 (out of 100).
+"Highly-rated" is interpreted as an IMDB rating >= 7.5 (out of 10) and a Metacritic rating >= 75 (out of 100).
 
 First off, get your FREE API keys:
 
@@ -24,6 +24,6 @@ For example, one can also use "response = tmdb_movies.top_rated()", to work from
 
 [OPTIONAL]
 I created a process in Windows Task Scheduler that runs "FufuFilms.py" twice a month.
-This bimonthly task is the reason I implemented a SendGrid function to send the final film lists to a target email address.
+This bimonthly task is the reason I implemented a SendGrid function to send the final films list to target email addresses (spamming my friends :).
 
 ENJOY! and tweak to your liking!
