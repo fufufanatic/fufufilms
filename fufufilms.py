@@ -1,6 +1,6 @@
 '''
 Created by fufufanatic
-The FufuFilms script creates and sends (email) a list of films deemed watch-worthy (solely subjective)
+fufufilms creates a list of awesome movies (based on imdb and metacritic ratings) that can be sent to friends
 '''
 
 import tmdbsimple
@@ -33,8 +33,8 @@ def get_films():
         films = tmdb_movies.top_rated(page=count)['results']
         for film in films:
             release_date = int(film['release_date'][0:4])
-            # only select movies released within the years below
-            if 2009 < release_date < 2020:
+            # only select movies released within the years below (I like decades)
+            if 1979 < release_date < 1990:
                 print(film, '\n')
                 tmdb_films.append(film)
         count += 1

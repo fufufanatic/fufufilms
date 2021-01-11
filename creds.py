@@ -1,4 +1,4 @@
-class Creds_opsec:
+class Creds:
 
     tmdb_key = 'your tmdb api key'
     omdb_key = 'your omdb api key'
