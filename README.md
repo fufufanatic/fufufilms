@@ -16,14 +16,16 @@ Set up your Python environment; acquire the necessary Python packages
 - pip install omdb
 - pip install sendgrid
 
-Input your newly acquired API key values into "creds.py".
+Input your newly acquired API key values into "fufufilms.py".
 
-Feel free to edit line #19 of "FufuFilms.py" for specialized movie lists.
-By default, movies that are currently in theaters will be returned and evaluated.
-For example, one can also use "response = tmdb_movies.top_rated()", to work from a list of already highly-rated film.
+The script currently returns top rated films.
+You can tweak this. For example, you can start from a different set of films using the following:
+
+- response = tmdb_movies.now_playing()
+- response = tmdb_movies.upcoming()
 
 [OPTIONAL]
-I created a process in Windows Task Scheduler that runs "FufuFilms.py" twice a month.
-This bimonthly task is the reason I implemented a SendGrid function to send the final films list to target email addresses (spamming my friends :).
+I created a process in Windows Task Scheduler that runs "fufufilms.py" twice a month.
+This bimonthly task is the reason I implemented a SendGrid function to send the final films list to target email addresses - spamming my friends :).
 
 ENJOY! and tweak to your liking!
