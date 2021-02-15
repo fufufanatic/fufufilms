@@ -3,20 +3,20 @@ Created by fufufanatic
 fufufilms creates a list of awesome movies (based on imdb and metacritic ratings) that can be sent to friends
 '''
 
+import os
 import tmdbsimple
 import omdb
-from creds import Creds
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Email, Content, Mail
 
-# Gets the necessary API keys from the Creds class
-tmdb_key = Creds.tmdb_key
-omdb_key = Creds.omdb_key
-sg_key = Creds.sg_key
+# Gets the necessary API keys, currently set as environment variables
+tmdb_key = os.environ.get('tmdb_key')
+omdb_key = os.environ.get('omdb_key')
+sg_key = os.environ.get('sg_key')
 
-# List of recipients' emails (including mine as the sender)
-my_email = Creds.my_email
-target_emails = Creds.target_emails
+# Gets the necessary email addresses, currently set as environment variables
+my_email = os.environ.get('my_email')
+target_emails = os.environ.get('target_emails')
 
 def get_films():
     
@@ -33,8 +33,8 @@ def get_films():
         films = tmdb_movies.top_rated(page=count)['results']
         for film in films:
             release_date = int(film['release_date'][0:4])
-            # only select movies released within the years below (I like decades)
-            if 1979 < release_date < 1990:
+            # only select movies released within a given year range
+            if 2019 < release_date < 2022:
                 print(film, '\n')
                 tmdb_films.append(film)
         count += 1
