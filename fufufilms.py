@@ -26,25 +26,25 @@ def get_films():
     tmdb_films = []
     tmdbsimple.API_KEY = tmdb_key
     tmdb_movies = tmdbsimple.Movies()
-    
+
     # Customizable tmdb films query that populates a results list
-    count = 1
-    while tmdb_movies.top_rated(page=count)['results']:
-        films = tmdb_movies.top_rated(page=count)['results']
+    page_count = 1  # New TMDB API restriction states that "page count must be less than or equal to 500"
+    while (page_count <= 500) and (tmdb_movies.top_rated(page=page_count)['results']):
+        films = tmdb_movies.top_rated(page=page_count)['results']
         for film in films:
             release_date = int(film['release_date'][0:4])
             # only select movies released within a given year range
-            if 2019 < release_date < 2022:
+            if 2021 < release_date < 2023:
                 print(film, '\n')
                 tmdb_films.append(film)
-        count += 1
+        page_count += 1
 
     # Returns film results with stock TMDB ratings, which I don't trust yet :(
     return tmdb_films 
 
 def get_films_with_relevant_ratings(films):
     
-    # Returns a list of films that might have ratings (IMDB and RT) I can trust, for now :)
+    # Returns a list of films that might have ratings (IMDB and Metacritic) I can trust, for now :)
     print('\n=============== [OMDB] Films with Relevant Ratings [OMDB] ===============\n')
     
     films_with_relevant_ratings = []
@@ -53,17 +53,17 @@ def get_films_with_relevant_ratings(films):
         # Queries OMDB for a given film title (and year)
         try:
             film_json = omdb.request(apikey=omdb_key, t=film['title'], y=film['release_date'][0:4]).json()
-        except Exception:
+        except:
             continue
-        
-        # If movie not found or has no ratings, then continue to next movie search
-        if 'Error' in film_json or not film_json['Ratings']:
-            continue
-
+        else:
+            # (EXCEPTION NOT THROWN) If movie not found or has no ratings, then continue to next movie search
+            if 'Error' in film_json or not film_json['Ratings']:
+                continue
+       
         # Print the movie details for testing purposes
         print(film_json['Title'], film_json['Year'], film_json['Ratings'])
 
-        # Creates a stock dictionary object for said film and initializes its ratings to zero; these remain zero if a rating has not been given  
+        # Creates a stock dictionary object for said film and initialize its ratings to zero; these remain zero if a rating has not been given  
         film_rating_dict = {}
         film_rating_dict['title'] = film_json['Title']
         film_rating_dict['year'] = film_json['Year']
@@ -71,7 +71,7 @@ def get_films_with_relevant_ratings(films):
         film_rating_dict['meta rating'] = 0
         
         film_ratings = film_json['Ratings']
-        # Iterates through all available ratings (IMDB, RT, Metacritic, etc.), but I only care for IMDB and Metacritic
+        # Iterates through all available ratings (IMDB, Metacritic, RT, etc.), but I only care for IMDB and Metacritic
         for film_rating in film_ratings: 
             if film_rating['Source'] == 'Internet Movie Database':
                 # For example, an IMDB rating of 7.1/10 is returned as 7.1
@@ -91,7 +91,7 @@ def get_films_with_relevant_ratings(films):
     
 def get_fufufilms(films_with_relevant_ratings):
     
-    # Returns a list of worthy films based on MY criteria (solely IMDB and RT ratings)
+    # Returns a list of worthy films based on MY criteria (solely IMDB and Metacritic ratings)
     print('\n=============== [FUFU] Films Considered Worthy!!! [FUFU] ===============\n')
 
     fufu_films = []
