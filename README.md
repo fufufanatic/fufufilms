@@ -32,6 +32,6 @@ You can tweak this. For example, you can start from a different set of films by 
 
 ## optional (2)
 
-I created a process in Windows Task Scheduler that runs "fufufilms.py" twice a month.  This bimonthly task is the reason I implemented a SendGrid function to send the final films list to target email addresses - spamming my friends :).
+I created a process in Windows Task Scheduler that runs "fufufilms.py" once a month.  This monthly task is the reason I implemented a SendGrid function to send the final films list to target email addresses - Hooray! for spamming friends and family :).
 
 *ENJOY! and tweak to your liking!*
