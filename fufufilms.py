@@ -1,6 +1,6 @@
 '''
 Created by fufufanatic
-fufufilms creates a list of awesome movies (based on imdb and metacritic ratings) that can be sent to friends
+fufufilms provides a list of awesome movies (based on imdb and metacritic ratings)
 '''
 
 import os
@@ -34,7 +34,7 @@ def get_films():
         for film in films:
             release_date = int(film['release_date'][0:4])
             # only select movies released within a given year range
-            if 2021 < release_date < 2023:
+            if 2020 < release_date < 2022:
                 print(film, '\n')
                 tmdb_films.append(film)
         page_count += 1
