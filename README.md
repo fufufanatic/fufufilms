@@ -1,9 +1,9 @@
-# **fufufilms**
+# fufufilms
 ---
 
 Python script that utilizes the tmdbsimple, omdb, and SendGrid (optional) APIs to return a list of highly-rated films (top rated, in-theaters, popular, etc).
 
-*"Highly-rated" is interpreted as an IMDB rating >= 7.5 (out of 10) and a Metacritic rating >= 75 (out of 100).*
+*"Highly-rated" is interpreted as an IMDB rating >= 7.5 (out of 10) and a Rotten Tomatoes rating >= 90% (out of 100%).*
 
 1. First off, set up your Python environment; acquire the necessary Python packages
 
@@ -21,7 +21,7 @@ Python script that utilizes the tmdbsimple, omdb, and SendGrid (optional) APIs t
 
 ## optional (1)
 
-The script currently returns top-rated films.
+The script currently returns top-rated films (`tmdb_movies.top_rated`).
 You can tweak this. For example, you can start from a different set of films by using one of the following:
 
 `response = tmdb_movies.now_playing()`
