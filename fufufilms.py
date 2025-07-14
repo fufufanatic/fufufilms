@@ -37,7 +37,7 @@ def get_films():
             except:
                 release_year = 0
             # select movies from 2020-2022 to get films with well-established ratings
-            if release_year in range(2023, 2024):
+            if release_year in range(2025, 2026):
                 print(film, '\n')
                 tmdb_films.append(film)
         page_count += 1
